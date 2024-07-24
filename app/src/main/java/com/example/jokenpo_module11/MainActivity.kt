@@ -21,27 +21,27 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("name", "Juliana")
         intent.putExtra("age", 23)
 
-//        val activityResult = registerForActivityResult(
-//            ActivityResultContracts.StartActivityForResult()
-//        ) { result: ActivityResult ->
-//            if (result.resultCode == Activity.RESULT_OK) {
-//                val intent = result.data
-//
-//                if (intent?.hasExtra("result") == true) {
-//                    Snackbar.make(
-//                        binding.root,
-//                        intent.getStringExtra("result") ?: "",
-//                        Snackbar.LENGTH_SHORT
-//                    ).show()
-//                }
-//            }
-//        }
+        val activityResult = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val intent = result.data
+
+                if (intent?.hasExtra("result") == true) {
+                    Snackbar.make(
+                        binding.root,
+                        intent.getStringExtra("result") ?: "",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
 
 
 
 
         binding.btnStartActivity.setOnClickListener {
-        //    activityResult.launch(activity2Intent)
+            activityResult.launch(activity2Intent)
         }
     }
 }
