@@ -11,15 +11,18 @@
         android:id="@+id/appBar2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_secondary_variant"
+        android:background="@color/design_default_color_primary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:logo="@drawable/ic_logo"
-        app:subtitle="Subtitulo"
-        app:title="Segunda Tela"
+        app:menu="@menu/second_screen_menu"
+        app:title="@string/second_screen_title"
         app:titleMarginBottom="4dp"
-        app:titleMarginStart="20dp" />
+        app:titleMarginStart="8dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ExtraTranslation">
     <string name="app_name">Jokenpo - Module 11</string>
     <string name="button_title">Iniciar activity</string>
+    <string name="second_screen_title">Segunda Tela</string>
+    <string name="menu_save_title">Salvar</string>
+    <string name="menu_settings_title" >Configuracoes</string>
 </resources>
