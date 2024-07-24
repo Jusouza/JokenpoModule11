@@ -12,16 +12,15 @@ class MainActivity2 : AppCompatActivity() {
 
         val binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.appBar2)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_logo_close)
+
 
        if(intent.extras?.isEmpty == false){
            val name = intent.getStringExtra("name")
            val age = intent.getIntExtra("age", 0)
        }
-
-        val result = Intent()
-
-        result.putExtra("result", "Navegaçao com intents")
-        setResult(Activity.RESULT_OK, result)
-        finish()
     }
 }
