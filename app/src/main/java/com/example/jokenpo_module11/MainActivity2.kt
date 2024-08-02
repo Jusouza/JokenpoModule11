@@ -67,9 +67,7 @@ private fun setupDrawer() {
         drawer.closeDrawers()
         when (menuItem.itemId) {
             R.id.drawer_home -> {
-                onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {}
-                })
+                onBackPressed()
                 true
             }
 
