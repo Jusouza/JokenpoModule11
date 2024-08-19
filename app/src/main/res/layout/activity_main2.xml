@@ -55,5 +55,5 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/menu_header"
         app:menu="@menu/drawer_menu"
-        tools:visibility="gone" />
+        tools:visibility="visible" />
 </androidx.drawerlayout.widget.DrawerLayout>
