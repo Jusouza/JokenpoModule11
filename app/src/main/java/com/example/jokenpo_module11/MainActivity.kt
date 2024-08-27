@@ -1,10 +1,13 @@
 package com.example.jokenpo_module11
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -51,6 +54,22 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navDrawer.setupWithNavController(navController)
         bottomNav.setupWithNavController(navController)
+
+        toolbar.setNavigationOnClickListener {
+            drawer.openDrawer(GravityCompat.START) // Abre o drawer quando clica no botão do menu
+        }
+
+        navDrawer.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.homeFragment -> {
+                    navController.navigate(R.id.homeFragment)
+                    drawer.closeDrawer(GravityCompat.START)
+                    true
+                }
+                else -> false
+            }
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
