@@ -17,4 +17,8 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="Theme.JokenpoModule11.AppOverLay" parent="ThemeOverlay.MaterialComponents.Dark"/>
+    <style name="Theme.JokenpoModule11.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
+
 </resources>

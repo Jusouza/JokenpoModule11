@@ -1,20 +1,18 @@
 package com.example.jokenpo_module11
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import androidx.core.view.GravityCompat
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.jokenpo_module11.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var navDrawer: NavigationView
     lateinit var bottomNav: BottomNavigationView
     lateinit var navController: NavController
+    lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,77 +34,27 @@ class MainActivity : AppCompatActivity() {
         navDrawer = binding.navView
         bottomNav = binding.bottomNav
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
 
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.playerFragment, R.id.resultFragment), drawer)
+        appBarConfiguration =
+            AppBarConfiguration(setOf(R.id.playerFragment, R.id.resultFragment), drawer)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment -> bottomNav.visibility = View.GONE
+                else -> bottomNav.visibility = View.VISIBLE
+            }
+        }
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-
         navDrawer.setupWithNavController(navController)
-
-        setupBottomNavigation()
+        bottomNav.setupWithNavController(navController)
     }
 
-    private fun setupBottomNavigation() {
-        bottomNav.setOnItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.bottom_option_1 -> {
-                    Snackbar.make(
-                        drawer,
-                        getString(R.string.bottom_nav_title_1),
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                    true
-                }
-
-                R.id.bottom_option_2 -> {
-                    Snackbar.make(
-                        drawer,
-                        getString(R.string.bottom_nav_title_2),
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                    true
-                }
-
-                else -> false
-            }
-
-        }
-    }
     override fun onSupportNavigateUp(): Boolean {
-        drawer.openDrawer(GravityCompat.START)
-        return true
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.second_screen_menu, menu)
-//        return true
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.menu_save -> {
-//                Snackbar.make(
-//                    this,
-//                    drawer,
-//                    getString(R.string.menu_save_title),
-//                    Snackbar.LENGTH_SHORT
-//                ).show()
-//                true
-//            }
-//
-//            R.id.menu_settings -> {
-//                Snackbar.make(
-//                    this,
-//                    drawer,
-//                    getString(R.string.menu_settings_title),
-//                    Snackbar.LENGTH_SHORT
-//                ).show()
-//                true
-//            }
-//
-//            else -> false
-//        }
-    //}
 }

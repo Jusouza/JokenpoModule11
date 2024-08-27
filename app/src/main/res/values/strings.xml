@@ -3,10 +3,10 @@
     <string name="button_title">Iniciar activity</string>
     <string name="second_screen_title">Segunda Tela</string>
     <string name="menu_save_title">Salvar</string>
-    <string name="menu_settings_title">Configuracoes</string>
+    <string name="menu_settings_title">Reload</string>
     <string name="drawer_home_title">Home</string>
-    <string name="bottom_nav_title_1">Opção 1</string>
-    <string name="bottom_nav_title_2">Opção 2</string>
+    <string name="bottom_nav_title_1">Player</string>
+    <string name="bottom_nav_title_2">Result</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
