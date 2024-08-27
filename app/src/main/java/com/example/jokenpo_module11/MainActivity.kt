@@ -1,41 +1,111 @@
 package com.example.jokenpo_module11
 
-import android.content.Intent
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.jokenpo_module11.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var drawer: DrawerLayout
+    lateinit var navDrawer: NavigationView
+    lateinit var bottomNav: BottomNavigationView
+    lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
-        val toolbar = binding.appBar
+        val toolbar = binding.appBar2
 
         setContentView(binding.root)
         setSupportActionBar(toolbar)
 
-        supportActionBar?.title = " Outro titulo"
-        supportActionBar?.setLogo(R.drawable.ic_logo)
-        supportActionBar?.setDisplayUseLogoEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        drawer = binding.root
+        navDrawer = binding.navView
+        bottomNav = binding.bottomNav
 
-        val activity2Intent = Intent(this, MainActivity2::class.java)
-        intent.putExtra("name", "Juliana")
-        intent.putExtra("age", 23)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navController = navHostFragment.navController
 
-     val sendIntent = Intent()
-        sendIntent.action = Intent.ACTION_SEND
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Minha mensagem")
-        sendIntent.type = "text/plain"
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.playerFragment, R.id.resultFragment), drawer)
 
-        binding.btnStartActivity.setOnClickListener {
-            startActivity(activity2Intent)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        navDrawer.setupWithNavController(navController)
+
+        setupBottomNavigation()
+    }
+
+    private fun setupBottomNavigation() {
+        bottomNav.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.bottom_option_1 -> {
+                    Snackbar.make(
+                        drawer,
+                        getString(R.string.bottom_nav_title_1),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    true
+                }
+
+                R.id.bottom_option_2 -> {
+                    Snackbar.make(
+                        drawer,
+                        getString(R.string.bottom_nav_title_2),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    true
+                }
+
+                else -> false
+            }
+
         }
     }
-
-  override  fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+    override fun onSupportNavigateUp(): Boolean {
+        drawer.openDrawer(GravityCompat.START)
         return true
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.second_screen_menu, menu)
+//        return true
+//    }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.itemId) {
+//            R.id.menu_save -> {
+//                Snackbar.make(
+//                    this,
+//                    drawer,
+//                    getString(R.string.menu_save_title),
+//                    Snackbar.LENGTH_SHORT
+//                ).show()
+//                true
+//            }
+//
+//            R.id.menu_settings -> {
+//                Snackbar.make(
+//                    this,
+//                    drawer,
+//                    getString(R.string.menu_settings_title),
+//                    Snackbar.LENGTH_SHORT
+//                ).show()
+//                true
+//            }
+//
+//            else -> false
+//        }
+    //}
 }

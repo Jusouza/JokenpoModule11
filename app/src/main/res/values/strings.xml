@@ -1,11 +1,12 @@
-<resources xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="ExtraTranslation">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
     <string name="app_name">Jokenpo - Module 11</string>
     <string name="button_title">Iniciar activity</string>
     <string name="second_screen_title">Segunda Tela</string>
     <string name="menu_save_title">Salvar</string>
-    <string name="menu_settings_title" >Configuracoes</string>
-    <string name="drawer_home_title" >Home</string>
-    <string name="bottom_nav_title_1" >Opção 1</string>
-    <string name="bottom_nav_title_2" >Opção 2</string>
+    <string name="menu_settings_title">Configuracoes</string>
+    <string name="drawer_home_title">Home</string>
+    <string name="bottom_nav_title_1">Opção 1</string>
+    <string name="bottom_nav_title_2">Opção 2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
