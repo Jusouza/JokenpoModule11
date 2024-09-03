@@ -2,6 +2,8 @@ package com.example.jokenpo_module11
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -55,9 +57,6 @@ class MainActivity : AppCompatActivity() {
         navDrawer.setupWithNavController(navController)
         bottomNav.setupWithNavController(navController)
 
-        toolbar.setNavigationOnClickListener {
-            drawer.openDrawer(GravityCompat.START) // Abre o drawer quando clica no botão do menu
-        }
 
         navDrawer.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -70,6 +69,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.homeFragment -> {
+                navController.navigate(R.id.homeFragment)
+                drawer.closeDrawer(GravityCompat.START)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
