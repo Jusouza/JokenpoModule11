@@ -55,4 +55,8 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+
+    val lifecycle_version = "2.8.5"
+    implementation("androidx.lifecycle:Lifecycle-runtime-ktx:$lifecycle_version")
+    implementation("androidx. Lifecycle:Lifecycle-common-java8:$lifecycle_version")
 }
