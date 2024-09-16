@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.jokenpo_module11.databinding.FragmentHomeBinding
 
@@ -26,11 +25,6 @@ class HomeFragment : Fragment() {
     ): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         editText = binding.editTextText2
-
-        if(savedInstanceState?.containsKey("editTextValue")== true){
-            val value = savedInstanceState.getString("editTextValue")
-            editText.setText(value)
-        }
 
         Log.d("Lifecycle", "onCreateView")
 
