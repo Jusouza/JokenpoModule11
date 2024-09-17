@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener{
     lateinit var bottomNav: BottomNavigationView
     lateinit var navController: NavController
     lateinit var appBarConfiguration: AppBarConfiguration
-    var currentPlay: String = "Paper"
+    var currentPlay: String = "Rock"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
