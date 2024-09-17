@@ -58,19 +58,31 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener{
         }
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navDrawer.setupWithNavController(navController)
+
         bottomNav.setupWithNavController(navController)
-
-
-        navDrawer.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.homeFragment -> {
-                    navController.navigate(R.id.homeFragment)
-                    drawer.closeDrawer(GravityCompat.START)
-                    true
+        bottomNav.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.resultFragment ->{
+                    val args = Bundle()
+                    args.putString("currentPlay", currentPlay)
+                    navController.navigate(it.itemId, args)
                 }
-                else -> false
+                else -> navController.navigate(it.itemId)
             }
+            true
+        }
+
+        navDrawer.setupWithNavController(navController)
+        navDrawer.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.resultFragment ->{
+                    val args = Bundle()
+                    args.putString("currentPlay", currentPlay)
+                    navController.navigate(it.itemId, args)
+                }
+                else -> navController.navigate(it.itemId)
+            }
+            true
         }
 
     }
