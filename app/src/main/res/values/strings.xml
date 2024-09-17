@@ -7,7 +7,13 @@
     <string name="drawer_home_title">Home</string>
     <string name="bottom_nav_title_1">Player</string>
     <string name="bottom_nav_title_2">Result</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_player">Player 1 </string>
+    <string name="subtitle_select_play">Select your play</string>
+    <string name="subtitle_result">The winner is</string>
     <string name="test">Test</string>
+    <string-array name="available_play_array">
+        <item>Paper</item>
+        <item>Scissor</item>
+        <item>Rock</item>
+    </string-array>
 </resources>

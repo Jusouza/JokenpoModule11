@@ -15,7 +15,7 @@
             app:destination="@id/game_nav" />
     </fragment>
     <navigation android:id="@+id/game_nav"
-        app:startDestination="@id/resultFragment">
+        app:startDestination="@id/playerFragment">
         <fragment
             android:id="@+id/resultFragment"
             android:name="com.example.jokenpo_module11.ResultFragment"
