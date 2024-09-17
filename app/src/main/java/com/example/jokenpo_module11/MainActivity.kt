@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,13 +22,14 @@ import com.example.jokenpo_module11.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnItemSelectedListener{
 
     lateinit var drawer: DrawerLayout
     lateinit var navDrawer: NavigationView
     lateinit var bottomNav: BottomNavigationView
     lateinit var navController: NavController
     lateinit var appBarConfiguration: AppBarConfiguration
+    var currentPlay: String = "Paper"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -83,6 +87,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val availablePlays = resources.getStringArray(R.array.available_play_array)
+        currentPlay = availablePlays[position]
+
+        Toast.makeText(this, "Jogada Selecionada: $currentPlay", Toast.LENGTH_SHORT).show()
+
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
     }
 
 }

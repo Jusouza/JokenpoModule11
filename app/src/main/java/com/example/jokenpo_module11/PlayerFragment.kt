@@ -1,5 +1,6 @@
 package com.example.jokenpo_module11
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
@@ -16,10 +18,18 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import com.example.jokenpo_module11.databinding.FragmentPlayerBinding
 
-class PlayerFragment : Fragment(), AdapterView.OnItemSelectedListener{
+class PlayerFragment : Fragment(){
 
-    lateinit var root: View
-    lateinit var selectPlay: Spinner
+    private lateinit var root: View
+    private lateinit var selectPlay: Spinner
+    private lateinit var onItemSelectedListener: OnItemSelectedListener
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        onItemSelectedListener = context as OnItemSelectedListener
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,7 +51,7 @@ class PlayerFragment : Fragment(), AdapterView.OnItemSelectedListener{
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         selectPlay.adapter = adapter
-        selectPlay.onItemSelectedListener = this
+        selectPlay.onItemSelectedListener = onItemSelectedListener
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -50,17 +60,6 @@ class PlayerFragment : Fragment(), AdapterView.OnItemSelectedListener{
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return item.onNavDestinationSelected(findNavController())
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val plays = resources.getStringArray(R.array.available_play_array)
-        val selectedPlay = plays[position]
-
-        Toast.makeText(requireContext(), "Jogada Selecionada: $selectedPlay", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("Not yet implemented")
     }
 
 }

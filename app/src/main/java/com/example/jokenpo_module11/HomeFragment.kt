@@ -33,8 +33,6 @@ class HomeFragment : Fragment() {
            findNavController().navigate(action)
         }
 
-        lifecycle.addObserver(CustomObserver())
-
         return binding.root
     }
 
